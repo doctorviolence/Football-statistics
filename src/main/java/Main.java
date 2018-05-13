@@ -1,30 +1,12 @@
-import java.util.Set;
+import exceptions.CrawlerException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        FootballCrawler crawler = new FootballCrawler();
-        Projection projection = new Projection();
-
-        Team[] test = crawler.crawlForTeamStats(2017);
-
-        for (Team t : test) {
-            System.out.println(t);
-        }
-
+    public static void main(String[] args) throws CrawlerException {
+        crawler.FootballCrawler crawler = new crawler.FootballCrawler();
+        crawler.crawlForTeamStats(2017);
         crawler.crawlForPlayerUrls(2017);
-
-        Set<Player> players = crawler.crawlForPlayerUrls(2017);
-
-        for (Player p : players){
-            System.out.println(p.toString());
-        }
-
-        // TEST
-        crawler.crawlForPlayerStats("https://www.pro-football-reference.com/players/G/GronRo00.htm", 2);
-
-        projection.getFootballTeams(test);
-
+        crawler.crawlForPlayerStats("https://www.pro-football-reference.com/players/G/GronRo00.htm", 2017);
     }
 
 }

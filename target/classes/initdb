@@ -1,0 +1,50 @@
+CREATE DATABASE football_statistics;
+
+CREATE TABLE teams (
+  team_url  VARCHAR(50) NOT NULL,
+  team_name VARCHAR(100),
+  season    INT,
+  w         INT,
+  l         INT,
+  pf        INT,
+  pa        INT,
+  PRIMARY KEY (team_url)
+);
+
+CREATE TABLE players (
+  player_url  VARCHAR(50) NOT NULL,
+  player_name VARCHAR(100),
+  PRIMARY KEY (player_url)
+);
+
+CREATE TABLE player_stats (
+  player_stat_id  BIGINT      NOT NULL,
+  player_url      VARCHAR(50) NOT NULL,
+  team_url        VARCHAR(50) NOT NULL,
+  g               INT,
+  pos             VARCHAR(10),
+  pass_yds        INT,
+  pass_td         INT,
+  pass_int        INT,
+  rush_yds        INT,
+  rush_td         INT,
+  rec             INT,
+  rec_yds         INT,
+  rec_td          INT,
+  fumbles         INT,
+  rushes          INT,
+  tackles_solo    INT,
+  tackles_assists INT,
+  sacks           INT,
+  pass_defended   INT,
+  def_int         INT,
+  fumbles_forced  INT,
+  fumbles_rec     INT,
+  def_tds         INT,
+  fgs_below_fifty INT,
+  fgs_above_fifty INT,
+  xp              INT,
+  FOREIGN KEY (player_url) REFERENCES players (player_url),
+  FOREIGN KEY (team_url) REFERENCES teams (team_url),
+  PRIMARY KEY (player_stat_id)
+);

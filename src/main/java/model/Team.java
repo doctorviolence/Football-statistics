@@ -1,6 +1,9 @@
+package model;
+
 public class Team {
 
     private String name;
+    private String teamUrl;
     private int season;
     private int wins;
     private int losses;
@@ -8,15 +11,18 @@ public class Team {
     private int pointsAgainst;
 
     public Team() {
+
     }
 
-    public Team(String name, int season) {
+    public Team(String name, String teamUrl, int season) {
         this.name = name;
+        this.teamUrl = teamUrl;
         this.season = season;
     }
 
-    public Team(String name, int season, int wins, int losses, int pointsFor, int pointsAgainst) {
+    public Team(String name, String teamUrl, int season, int wins, int losses, int pointsFor, int pointsAgainst) {
         this.name = name;
+        this.teamUrl = teamUrl;
         this.season = season;
         this.wins = wins;
         this.losses = losses;
@@ -30,6 +36,14 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTeamUrl() {
+        return teamUrl;
+    }
+
+    public void setTeamUrl(String teamUrl) {
+        this.teamUrl = teamUrl;
     }
 
     public int getSeason() {
@@ -73,8 +87,27 @@ public class Team {
     }
 
     @Override
+    public int hashCode() {
+        return (int) teamUrl.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o && this.getClass() == o.getClass()) {
+            return true;
+        }
+
+        if (o == null && this.getClass() != o.getClass()) {
+            return false;
+        }
+
+        Team t = (Team) o;
+        return (!teamUrl.equals(t.teamUrl));
+    }
+
+    @Override
     public String toString() {
-        return getName() + " W: " + getWins() + " L: " + getLosses() + " PF: " + getPointsFor() + " PA: " + getPointsAgainst();
+        return getName() + " " + getTeamUrl() + " " + getSeason() + " W: " + getWins() + " L: " + getLosses() + " PF: " + getPointsFor() + " PA: " + getPointsAgainst();
     }
 
 }

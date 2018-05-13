@@ -1,3 +1,5 @@
+package model;
+
 import java.text.DecimalFormat;
 
 import static java.lang.Double.parseDouble;
@@ -6,7 +8,7 @@ import static java.lang.Math.pow;
 public class Projection {
 
     /*
-        WORK IN PROGRESS
+        IN PROGRESS
      */
 
     public double getPythagoreanWins(Team team) {
