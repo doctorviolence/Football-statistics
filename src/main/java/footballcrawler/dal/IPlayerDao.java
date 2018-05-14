@@ -1,17 +1,14 @@
-package dal;
+package footballcrawler.dal;
 
-import model.Player;
+import footballcrawler.model.Player;
 
 import javax.sql.DataSource;
-import java.util.Set;
 
 public interface IPlayerDao {
 
     void setDataSource(DataSource ds);
 
-    Set<Player> getPlayers();
-
-    Player getPlayer();
+    boolean findPlayerInDb(String playerUrl);
 
     boolean createPlayer(Player player);
 

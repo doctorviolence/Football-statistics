@@ -1,16 +1,18 @@
-package model;
+package footballcrawler.model;
 
 import java.util.Arrays;
 
-public class PlayerStat extends Player {
+public class PlayerStat {
 
     private String[] offense = {"QB", "qb", "RB", "rb", "WR", "wr", "TE", "te"};
     private String[] defense = {"DE", "de", "de/dt", "DT", "dt,", "LB", "lb", "de/lb", "CB", "cb", "RCB", "cb/RCB", "LCB", "cb/LCB", "S", "S/ss", "s"};
     private String[] specialTeams = {"K", "P"};
 
+    private long playerStatId;
     private String position;
-    private String teamUrl;
+    private String playerUrl;
     private int games;
+    private Player player;
 
     // Offense
     private int passingYds;
@@ -39,14 +41,29 @@ public class PlayerStat extends Player {
     private int fieldGoalsAboveFiftyYds;
     private int extraPoints;
 
-    public PlayerStat(){
+    public PlayerStat() {
 
     }
 
-    public PlayerStat(String position, String teamUrl, int games){
+    public PlayerStat(String position, int games, Player player) {
         this.position = position;
-        this.teamUrl = teamUrl;
         this.games = games;
+        this.player = player;
+    }
+
+    public PlayerStat(long playerStatId, String position,  int games, Player player) {
+        this.playerStatId = playerStatId;
+        this.position = position;
+        this.games = games;
+        this.player = player;
+    }
+
+    public long getPlayerStatId() {
+        return playerStatId;
+    }
+
+    public void setPlayerStatId(long playerStatId) {
+        this.playerStatId = playerStatId;
     }
 
     public String getPosition() {
@@ -56,11 +73,9 @@ public class PlayerStat extends Player {
     public void setPosition(String position) {
         if (Arrays.stream(this.offense).parallel().anyMatch(position::contains)) {
             this.position = position;
-        }
-        else if (Arrays.stream(this.defense).parallel().anyMatch(position::contains)) {
+        } else if (Arrays.stream(this.defense).parallel().anyMatch(position::contains)) {
             this.position = position;
-        }
-        else if (Arrays.stream(this.specialTeams).parallel().anyMatch(position::contains)) {
+        } else if (Arrays.stream(this.specialTeams).parallel().anyMatch(position::contains)) {
             this.position = position;
         }
     }
@@ -77,12 +92,12 @@ public class PlayerStat extends Player {
         return Arrays.stream(specialTeams).parallel().anyMatch(this.position::contains);
     }
 
-    public String getTeamUrl() {
-        return teamUrl;
+    public String getPlayerUrl() {
+        return playerUrl;
     }
 
-    public void setTeamUrl(String teamUrl) {
-        this.teamUrl = teamUrl;
+    public void setPlayerUrl(String playerUrl) {
+        this.playerUrl = playerUrl;
     }
 
     public int getGames() {
@@ -91,6 +106,14 @@ public class PlayerStat extends Player {
 
     public void setGames(int games) {
         this.games = games;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public int getPassingYds() {
@@ -260,4 +283,24 @@ public class PlayerStat extends Player {
     public void setExtraPoints(int extraPoints) {
         this.extraPoints = extraPoints;
     }
+
+    @Override
+    public int hashCode() {
+        return (int) Long.hashCode(playerStatId);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o && this.getClass() == o.getClass()) {
+            return true;
+        }
+
+        if (o == null && this.getClass() != o.getClass()) {
+            return false;
+        }
+
+        PlayerStat p = (PlayerStat) o;
+        return (playerStatId == p.playerStatId);
+    }
+
 }

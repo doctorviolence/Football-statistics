@@ -1,4 +1,4 @@
-package exceptions;
+package footballcrawler.exception;
 
 public class CrawlerException extends Exception {
 

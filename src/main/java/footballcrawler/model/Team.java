@@ -1,8 +1,9 @@
-package model;
+package footballcrawler.model;
 
 public class Team {
 
     private String name;
+    private String teamAcronym;
     private String teamUrl;
     private int season;
     private int wins;
@@ -14,14 +15,16 @@ public class Team {
 
     }
 
-    public Team(String name, String teamUrl, int season) {
+    public Team(String name, String teamAcronym, String teamUrl, int season) {
         this.name = name;
+        this.teamAcronym = teamAcronym;
         this.teamUrl = teamUrl;
         this.season = season;
     }
 
-    public Team(String name, String teamUrl, int season, int wins, int losses, int pointsFor, int pointsAgainst) {
+    public Team(String name, String teamAcronym, String teamUrl, int season, int wins, int losses, int pointsFor, int pointsAgainst) {
         this.name = name;
+        this.teamAcronym = teamAcronym;
         this.teamUrl = teamUrl;
         this.season = season;
         this.wins = wins;
@@ -36,6 +39,14 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTeamAcronym() {
+        return teamAcronym;
+    }
+
+    public void setTeamAcronym(String teamAcronym) {
+        this.teamAcronym = teamAcronym;
     }
 
     public String getTeamUrl() {

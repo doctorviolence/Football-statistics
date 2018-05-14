@@ -1,9 +1,12 @@
-package model;
+package footballcrawler.model;
+
+import java.util.Set;
 
 public class Player {
 
     private String name;
     private String playerUrl;
+    private Set<PlayerStat> playerStats;
 
     public Player() {
 
@@ -30,6 +33,17 @@ public class Player {
         this.playerUrl = playerUrl;
     }
 
+    public Set<PlayerStat> getPlayerStats() {
+        return playerStats;
+    }
+
+    public void setPlayerStats(Set<PlayerStat> playerStats) {
+        this.playerStats = playerStats;
+    }
+
+    public void addPlayerStats(PlayerStat playerStat) {
+        this.playerStats.add(playerStat);
+    }
 
     @Override
     public int hashCode() {

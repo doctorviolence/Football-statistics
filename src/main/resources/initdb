@@ -1,28 +1,30 @@
-CREATE DATABASE football_statistics;
+CREATE DATABASE IF NOT EXISTS football_statistics;
 
-CREATE TABLE teams (
-  team_url  VARCHAR(50) NOT NULL,
-  team_name VARCHAR(100),
-  season    INT,
-  w         INT,
-  l         INT,
-  pf        INT,
-  pa        INT,
+
+CREATE TABLE IF NOT EXISTS teams (
+  team_url     VARCHAR(500) NOT NULL,
+  team_acronym VARCHAR(3)   NOT NULL,
+  team_name    VARCHAR(100),
+  season       INT,
+  w            INT,
+  l            INT,
+  pf           INT,
+  pa           INT,
   PRIMARY KEY (team_url)
 );
 
-CREATE TABLE players (
-  player_url  VARCHAR(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS players (
+  player_url  VARCHAR(500) NOT NULL,
   player_name VARCHAR(100),
   PRIMARY KEY (player_url)
 );
 
-CREATE TABLE player_stats (
-  player_stat_id  BIGINT      NOT NULL,
-  player_url      VARCHAR(50) NOT NULL,
-  team_url        VARCHAR(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS player_stats (
+  player_stat_id  BIGINT       NOT NULL AUTO_INCREMENT,
+  player_url      VARCHAR(500) NOT NULL,
+  season          INT,
   g               INT,
-  pos             VARCHAR(10),
+  pos             VARCHAR(50),
   pass_yds        INT,
   pass_td         INT,
   pass_int        INT,
@@ -45,6 +47,5 @@ CREATE TABLE player_stats (
   fgs_above_fifty INT,
   xp              INT,
   FOREIGN KEY (player_url) REFERENCES players (player_url),
-  FOREIGN KEY (team_url) REFERENCES teams (team_url),
   PRIMARY KEY (player_stat_id)
 );

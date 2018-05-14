@@ -1,15 +1,14 @@
-package dal;
+package footballcrawler.dal;
 
-import model.Team;
+import footballcrawler.model.Team;
 
 import javax.sql.DataSource;
-import java.util.Set;
 
 public interface ITeamDao {
 
     void setDataSource(DataSource ds);
 
-    Set<Team> getTeams();
+    boolean findTeamInDb(String acronym, int season);
 
     boolean createTeam(Team team);
 
