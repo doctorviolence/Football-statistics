@@ -11,6 +11,7 @@ Data to add:
   
 To-do:
   - Complete crud methods in daos
+  - Optimize code, remove bottle necks
   - Write tests
   - Simple front-end
   - More...
